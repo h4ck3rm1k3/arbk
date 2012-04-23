@@ -30,11 +30,7 @@ class CompanyAuthorizedpersonsAdmin(admin.ModelAdmin):
         def get_person_name(self, obj):
             return '%s'%(obj.person.name2)
 
-<<<<<<< HEAD
 	search_fields = ['person__name2', 'company__name','company__telephone','company__regnumber',
-=======
-	search_fields = ['get_person_name', 'company__name','company__telephone','company__regnumber',
->>>>>>> 1399e91498041ab10ed1d1d389357bcbe47883c9
 	'company__addressstreet','company__addressstreetnumber', 'company__addresscity',
 	'company__addresspostcode', 'company__employsnumber', 'company__constitutiondate',
 	'company__capital',]
