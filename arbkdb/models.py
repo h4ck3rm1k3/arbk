@@ -11,6 +11,8 @@ from django.db import models
 
 class ArbkBusinesscategory(models.Model):
     name = models.CharField(max_length=200, db_column=u'Name') # Field name made lowercase.
+    def __unicode__(self):
+        return (self.name)
     class Meta:
         db_table = u'arbk_businesscategory'
         verbose_name_plural = "BusinessCategories"
@@ -35,8 +37,9 @@ class ArbkCompany(models.Model):
     addresscity = models.CharField(max_length=40, db_column=u'AddressCity') # Field name made lowercase.
     addresspostcode = models.CharField(max_length=10, db_column=u'AddressPostCode') # Field name made lowercase.
     primarycategory = models.ForeignKey(ArbkBusinesscategory, db_column=u'PrimaryCategory_id') # Field name made lowercase.
+    owner = models.ForeignKey(ArbkLegalentity)
     def __unicode__(self):
-        return str(self.name)
+        return (self.name)
 
     class Meta:
         db_table = u'arbk_company'
@@ -44,9 +47,9 @@ class ArbkCompany(models.Model):
 
 class ArbkPerson(models.Model):
     personalid = models.CharField(max_length=200, db_column=u'PersonalID') # Field name made lowercase.
-    name2 = models.CharField(max_length=200, db_column=u'Name') # Field name made lowercase.
+    name = models.CharField(max_length=200, db_column=u'Name') # Field name made lowercase.
     def __unicode__(self):
-        return (self.name2)
+        return (self.name)
     class Meta:
         db_table = u'arbk_person'
         verbose_name_plural = "People"
@@ -55,7 +58,7 @@ class ArbkCompanyAuthorizedpersons(models.Model):
     company = models.ForeignKey(ArbkCompany)
     person = models.ForeignKey(ArbkPerson)
     def __unicode__(self):
-        return (self.person.name2)
+        return (self.person.name)
     class Meta:
         db_table = u'arbk_company_AuthorizedPersons'
         verbose_name_plural = "AuthorizedPeople"
@@ -72,6 +75,8 @@ class ArbkCompanyOwners(models.Model):
 class ArbkCompanySecondarycategories(models.Model):
     company = models.ForeignKey(ArbkCompany)
     businesscategory = models.ForeignKey(ArbkBusinesscategory)
+    def __unicode__(self):
+        return str(self.businesscategory)
     class Meta:
         db_table = u'arbk_company_SecondaryCategories'
         verbose_name_plural = "SecondaryCategories"
