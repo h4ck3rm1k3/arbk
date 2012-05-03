@@ -1,0 +1,10 @@
+from django.core.management import setup_environ
+import settings
+setup_environ(settings)
+
+from arbkdb.models import ArbkCompanyOwners
+x = ArbkCompanyOwners.objects.all()
+c = ArbkCompanyOwners.objects.count()
+
+print c
+print x

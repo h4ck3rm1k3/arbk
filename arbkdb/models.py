@@ -55,8 +55,8 @@ class ArbkPerson(models.Model):
         verbose_name_plural = "People"
 
 class ArbkCompanyAuthorizedpersons(models.Model):
-    company = models.ForeignKey(ArbkCompany)
-    person = models.ForeignKey(ArbkPerson)
+    company = models.ForeignKey(ArbkCompany,related_name='authpeople')
+    person = models.ForeignKey(ArbkPerson,related_name='isauthorized')
     def __unicode__(self):
         return (self.person.name)
     class Meta:
@@ -64,8 +64,8 @@ class ArbkCompanyAuthorizedpersons(models.Model):
         verbose_name_plural = "AuthorizedPeople"
 
 class ArbkCompanyOwners(models.Model):
-    company = models.ForeignKey(ArbkCompany)
-    legalentity = models.ForeignKey(ArbkLegalentity)
+    company = models.ForeignKey(ArbkCompany,related_name='owners' )
+    legalentity = models.ForeignKey(ArbkLegalentity,related_name='owns')
     def __unicode__(self):
         return str(self.company)
     class Meta:
