@@ -19,5 +19,7 @@ print "company name %s " % c.name
 print "category %s " % c.primarycategory
 print "owner name %s " % c.owner.name
 print "owner id %d " % c.owner.id
+print "authorized persons %s " % c.authpeople.all()
+print "owners %s " % c.owners.all()
 
 
